@@ -34,7 +34,7 @@ if (!empty($data->username) && !empty($data->password)) {
     $password = mysqli_real_escape_string($conn, $data->password);
     
     // Query để kiểm tra người dùng
-    $sql = "SELECT id, username, password, full_name, role, avatar FROM users WHERE username = ?";
+    $sql = "SELECT id, username, password, full_name, role FROM users WHERE username = ?";
     
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);
@@ -70,8 +70,19 @@ if (!empty($data->username) && !empty($data->password)) {
                 $update_stmt->close();
             }
             
-            // Xác định avatar - sử dụng avatar_guide.png làm mặc định
-            $avatar = $user["avatar"] ?? "/assets/images/avatar_guide.png";
+            // Sử dụng Font Awesome icon thay cho ảnh avatar
+            $avatar_icon = "fa-user-circle";
+            if($user["role"] === "admin") {
+                $avatar_icon = "fa-user-shield";
+            } else if($user["role"] === "manager") {
+                $avatar_icon = "fa-user-tie";
+            } else if($user["role"] === "designer") {
+                $avatar_icon = "fa-paint-brush";
+            } else if($user["role"] === "coder" || $user["role"] === "developer") {
+                $avatar_icon = "fa-code";
+            } else if($user["role"] === "market_research") {
+                $avatar_icon = "fa-chart-line";
+            }
             
             // Đăng nhập thành công
             http_response_code(200);
@@ -83,7 +94,7 @@ if (!empty($data->username) && !empty($data->password)) {
                     "username" => $user["username"],
                     "full_name" => $user["full_name"],
                     "role" => $user["role"],
-                    "avatar" => $avatar
+                    "avatar_icon" => $avatar_icon
                 ),
                 "debug" => $debug_info
             ));
