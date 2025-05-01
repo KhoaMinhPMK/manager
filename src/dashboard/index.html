@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WAIEDU - Quản lý Dự án</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <header class="dashboard-header">
+      <div class="header-top">
+        <div class="logo-container">
+          <h2 class="logo">WAIEDU</h2>
+        </div>
+        <div class="user-info">
+          <div class="date-info" id="currentDate"></div>
+          <div class="user-greeting">
+            <span>Xin chào,</span>
+            <span class="user-name" id="userName">Nguyễn Văn A</span>
+          </div>
+          <div class="user-avatar">
+            <img src="https://via.placeholder.com/40" alt="Avatar người dùng">
+          </div>
+        </div>
+      </div>
+      
+      <div class="news-ticker-container">
+        <div class="news-ticker-label">Thông báo:</div>
+        <div class="news-ticker">
+          <div class="ticker-content" id="tickerContent">
+            Chào mừng bạn đến với WAIEDU Dashboard - Hệ thống quản lý học tập hiện đại - Bạn có 3 công việc cần hoàn thành hôm nay - Lớp học Toán sẽ bắt đầu lúc 15:00 chiều nay
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <main class="dashboard-content">
+      <div class="dashboard-grid">
+        <!-- Tổng quan -->
+        <div class="dashboard-card overview">
+          <h3><i class="fas fa-chart-line"></i> Tổng quan dự án</h3>
+          <div class="stats-container">
+            <div class="stat-item">
+              <span class="stat-value">12</span>
+              <span class="stat-label">Dự án đang thực hiện</span>
+            </div>
+            <div class="stat-item urgent">
+              <span class="stat-value">3</span>
+              <span class="stat-label">Dự án sắp đến hạn</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value">42</span>
+              <span class="stat-label">Task đang thực hiện</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value">18</span>
+              <span class="stat-label">Nhân sự tham gia</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phần Task -->
+        <div class="dashboard-card tasks">
+          <div class="card-header">
+            <h3><i class="fas fa-tasks"></i> Task ưu tiên</h3>
+            <button class="btn-add"><i class="fas fa-plus"></i> Thêm Task</button>
+          </div>
+          <div class="task-list">
+            <div class="task-item urgent">
+              <div class="task-status"></div>
+              <div class="task-info">
+                <h4>Hoàn thiện giao diện người dùng</h4>
+                <div class="task-meta">
+                  <span class="due-date"><i class="far fa-clock"></i> 25/05/2023</span>
+                  <span class="assignee"><i class="far fa-user"></i> Nguyễn Văn A</span>
+                </div>
+              </div>
+              <div class="task-progress">
+                <div class="progress-bar">
+                  <div class="progress" style="width: 75%"></div>
+                </div>
+                <span>75%</span>
+              </div>
+            </div>
+
+            <div class="task-item">
+              <div class="task-status"></div>
+              <div class="task-info">
+                <h4>Phát triển API backend</h4>
+                <div class="task-meta">
+                  <span class="due-date"><i class="far fa-clock"></i> 30/05/2023</span>
+                  <span class="assignee"><i class="far fa-user"></i> Trần Thị B</span>
+                </div>
+              </div>
+              <div class="task-progress">
+                <div class="progress-bar">
+                  <div class="progress" style="width: 45%"></div>
+                </div>
+                <span>45%</span>
+              </div>
+            </div>
+
+            <div class="task-item">
+              <div class="task-status"></div>
+              <div class="task-info">
+                <h4>Testing và QA</h4>
+                <div class="task-meta">
+                  <span class="due-date"><i class="far fa-clock"></i> 10/06/2023</span>
+                  <span class="assignee"><i class="far fa-user"></i> Lê Văn C</span>
+                </div>
+              </div>
+              <div class="task-progress">
+                <div class="progress-bar">
+                  <div class="progress" style="width: 20%"></div>
+                </div>
+                <span>20%</span>
+              </div>
+            </div>
+          </div>
+          <a href="#" class="view-all">Xem tất cả task <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Tiến độ dự án -->
+        <div class="dashboard-card project-progress">
+          <h3><i class="fas fa-project-diagram"></i> Tiến độ dự án</h3>
+          <div class="project-list">
+            <div class="project-item">
+              <div class="project-info">
+                <h4>Hệ thống quản lý học tập WAIEDU</h4>
+                <div class="project-meta">
+                  <span class="project-deadline"><i class="far fa-calendar"></i> Deadline: 30/06/2023</span>
+                </div>
+              </div>
+              <div class="project-progress">
+                <div class="progress-bar">
+                  <div class="progress" style="width: 65%"></div>
+                </div>
+                <span>65%</span>
+              </div>
+            </div>
+
+            <div class="project-item urgent">
+              <div class="project-info">
+                <h4>Ứng dụng mobile WAIEDU</h4>
+                <div class="project-meta">
+                  <span class="project-deadline"><i class="far fa-calendar"></i> Deadline: 15/05/2023</span>
+                </div>
+              </div>
+              <div class="project-progress">
+                <div class="progress-bar">
+                  <div class="progress" style="width: 80%"></div>
+                </div>
+                <span>80%</span>
+              </div>
+            </div>
+          </div>
+          <a href="#" class="view-all">Xem tất cả dự án <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Team Members -->
+        <div class="dashboard-card team">
+          <div class="card-header">
+            <h3><i class="fas fa-users"></i> Nhân sự dự án</h3>
+            <button class="btn-add"><i class="fas fa-plus"></i> Thêm thành viên</button>
+          </div>
+          <div class="team-list">
+            <div class="team-member">
+              <img src="https://via.placeholder.com/40" alt="Avatar">
+              <div class="member-info">
+                <h4>Nguyễn Văn A</h4>
+                <span>Frontend Developer</span>
+              </div>
+              <div class="member-workload">
+                <span>8</span>
+                <small>Tasks</small>
+              </div>
+            </div>
+            
+            <div class="team-member">
+              <img src="https://via.placeholder.com/40" alt="Avatar">
+              <div class="member-info">
+                <h4>Trần Thị B</h4>
+                <span>Backend Developer</span>
+              </div>
+              <div class="member-workload">
+                <span>6</span>
+                <small>Tasks</small>
+              </div>
+            </div>
+            
+            <div class="team-member">
+              <img src="https://via.placeholder.com/40" alt="Avatar">
+              <div class="member-info">
+                <h4>Lê Văn C</h4>
+                <span>QA Engineer</span>
+              </div>
+              <div class="member-workload">
+                <span>4</span>
+                <small>Tasks</small>
+              </div>
+            </div>
+          </div>
+          <a href="#" class="view-all">Xem tất cả nhân sự <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <script src="dashboard.js"></script>
+</body>
+</html>

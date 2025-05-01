@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WAIEDU - Đăng nhập</title>
+  <!-- Thêm Google Font Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="login-wrapper">
+    <div class="login-card">
+      <h1 class="logo">WAIEDU</h1>
+      <form id="loginForm">
+        <div class="input-group">
+          <label for="username">Tên đăng nhập</label>
+          <input type="text" id="username" name="username" required />
+        </div>
+        <div class="input-group">
+          <label for="password">Mật khẩu</label>
+          <div class="password-wrapper">
+            <input type="password" id="password" name="password" required />
+            <button type="button" class="toggle-password" aria-label="Hiện mật khẩu">&#128065;</button>
+          </div>
+        </div>
+        <button type="submit" class="btn-login">Đăng nhập</button>
+      </form>
+      <div class="auth-links">
+        <p class="forgot"><a href="#">Quên mật khẩu?</a></p>
+        <!-- Link đăng ký đã được gỡ bỏ vì chỉ Admin mới có quyền tạo tài khoản -->
+      </div>
+    </div>
+  </div>
+  <script src="scripts.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WAIEDU - Quản lý thành viên</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../src/dashboard/dashboard.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <header id="admin-header" class="dashboard-header">
+      <!-- Header sẽ được chèn bằng JavaScript -->
+    </header>
+    
+    <div class="admin-content-wrapper">
+      <!-- Sidebar menu -->
+      <nav class="admin-sidebar">
+        <ul class="admin-menu">
+          <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Tổng quan</a></li>
+          <li class="active"><a href="team-members.html"><i class="fas fa-users"></i> Quản lý nhân sự</a></li>
+          <li><a href="create-user.html"><i class="fas fa-user-plus"></i> Tạo tài khoản</a></li>
+          <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Quản lý dự án</a></li>
+        </ul>
+      </nav>
+      
+      <!-- Main content -->
+      <main class="admin-main">
+        <div class="admin-card">
+          <div class="card-header">
+            <h1 class="admin-title">Quản lý thành viên nhóm</h1>
+            <div class="action-buttons">
+              <button class="btn-primary" onclick="window.location.href='create-user.html'">
+                <i class="fas fa-plus"></i> Thêm thành viên
+              </button>
+            </div>
+          </div>
+          
+          <!-- Team filter -->
+          <div class="team-filter">
+            <button class="filter-btn active" data-team="all">Tất cả</button>
+            <button class="filter-btn" data-team="code">Team Code</button>
+            <button class="filter-btn" data-team="design">Team Design</button>
+            <button class="filter-btn" data-team="market">Team Nghiên cứu thị trường</button>
+          </div>
+          
+          <!-- Members table -->
+          <div class="table-responsive">
+            <table class="members-table">
+              <thead>
+                <tr>
+                  <th>Họ và tên</th>
+                  <th>Team</th>
+                  <th>Vai trò</th>
+                  <th>Email</th>
+                  <th>Điện thoại</th>
+                  <th>Thông tin</th>
+                  <th>Hành động</th>
+                </tr>
+              </thead>
+              <tbody id="membersTableBody">
+                <!-- Dữ liệu sẽ được nạp bằng JavaScript -->
+                <tr class="team-code">
+                  <td>
+                    <div class="member-info">
+                      <img src="https://ui-avatars.com/api/?name=Lê+Minh+Hoàng&background=4e5dfc&color=fff" alt="Avatar">
+                      <span>Lê Minh Hoàng</span>
+                    </div>
+                  </td>
+                  <td>Code</td>
+                  <td>Coder</td>
+                  <td>minhhoanghsftg@gmail.com</td>
+                  <td>0857856350</td>
+                  <td>KHMT2024.2 / ĐHCNTT</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="btn-icon edit" title="Sửa"><i class="fas fa-edit"></i></button>
+                      <button class="btn-icon delete" title="Xóa"><i class="fas fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                
+                <tr class="team-code">
+                  <td>
+                    <div class="member-info">
+                      <img src="https://ui-avatars.com/api/?name=Phạm+Quốc+Huy&background=4e5dfc&color=fff" alt="Avatar">
+                      <span>Phạm Quốc Huy</span>
+                    </div>
+                  </td>
+                  <td>Code</td>
+                  <td>Coder</td>
+                  <td>huy.phamcs@hcmut.edu.vn</td>
+                  <td>0902716951</td>
+                  <td>Khoa học máy tính / BK</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="btn-icon edit" title="Sửa"><i class="fas fa-edit"></i></button>
+                      <button class="btn-icon delete" title="Xóa"><i class="fas fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                
+                <tr class="team-design">
+                  <td>
+                    <div class="member-info">
+                      <img src="https://ui-avatars.com/api/?name=Nguyễn+Khả+Ái&background=28a745&color=fff" alt="Avatar">
+                      <span>Nguyễn Khả Ái</span>
+                      <span class="badge leader">Leader</span>
+                    </div>
+                  </td>
+                  <td>Design</td>
+                  <td>Designer</td>
+                  <td>kaai333777@gmail.com</td>
+                  <td>0356420423</td>
+                  <td>Kiến trúc / Văn Lang</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="btn-icon edit" title="Sửa"><i class="fas fa-edit"></i></button>
+                      <button class="btn-icon delete" title="Xóa"><i class="fas fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                
+                <!-- Thêm các thành viên khác tương tự -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  
+  <script src="admin.js"></script>
+  <script src="team-members.js"></script>
+</body>
+</html>

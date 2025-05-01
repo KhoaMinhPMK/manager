@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WAIEDU - Tạo tài khoản nhân viên</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../src/dashboard/dashboard.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Header sẽ được thêm vào bằng JavaScript -->
+    <header id="admin-header" class="dashboard-header">
+      <!-- Header sẽ được chèn bằng JavaScript -->
+    </header>
+    
+    <div class="admin-content-wrapper">
+      <!-- Sidebar menu -->
+      <nav class="admin-sidebar">
+        <ul class="admin-menu">
+          <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Tổng quan</a></li>
+          <li><a href="users.html"><i class="fas fa-users"></i> Quản lý nhân viên</a></li>
+          <li class="active"><a href="create-user.html"><i class="fas fa-user-plus"></i> Tạo tài khoản</a></li>
+          <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Quản lý dự án</a></li>
+          <li><a href="settings.html"><i class="fas fa-cog"></i> Cài đặt hệ thống</a></li>
+        </ul>
+      </nav>
+      
+      <!-- Main content -->
+      <main class="admin-main">
+        <div class="admin-card">
+          <h1 class="admin-title">Tạo tài khoản mới cho nhân viên</h1>
+          
+          <form id="createUserForm">
+            <div class="input-group">
+              <label for="full_name">Họ và tên nhân viên</label>
+              <input type="text" id="full_name" name="full_name" required />
+            </div>
+
+            <div class="input-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            
+            <div class="input-group">
+              <label for="username">Tên đăng nhập</label>
+              <input type="text" id="username" name="username" required />
+            </div>
+            
+            <div class="input-group">
+              <label for="password">Mật khẩu</label>
+              <div class="password-wrapper">
+                <input type="password" id="password" name="password" required />
+                <button type="button" class="toggle-password" aria-label="Hiện mật khẩu">&#128065;</button>
+              </div>
+            </div>
+
+            <div class="input-row">
+              <div class="input-group">
+                <label for="role">Vai trò</label>
+                <select id="role" name="role" required>
+                  <option value="developer">Developer</option>
+                  <option value="coder">Coder</option>
+                  <option value="designer">Designer</option>
+                  <option value="market_research">Nghiên cứu thị trường</option>
+                  <option value="tester">Tester</option>
+                  <option value="manager">Manager</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+              
+              <div class="input-group">
+                <label for="department">Phòng ban</label>
+                <select id="department" name="department">
+                  <option value="development">Phát triển</option>
+                  <option value="testing">Kiểm thử</option>
+                  <option value="design">Thiết kế</option>
+                  <option value="management">Quản lý</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-primary">Tạo tài khoản</button>
+              <button type="button" class="btn-secondary" onclick="window.location.href='users.html'">Hủy bỏ</button>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+  
+  <script src="admin.js"></script>
+  <script src="create-user.js"></script>
+</body>
+</html>
