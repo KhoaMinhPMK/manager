@@ -230,9 +230,52 @@ function initTaskActions() {
   const addMemberBtn = document.querySelector('.team .btn-add');
   if (addMemberBtn) {
     addMemberBtn.addEventListener('click', function() {
-      window.location.href = '../../admin/team-members.html';
+      // Kiểm tra quyền trước khi chuyển hướng
+      const userData = localStorage.getItem('user');
+      if (userData) {
+        const user = JSON.parse(userData);
+        if (user.role === 'admin' || user.role === 'manager') {
+          window.location.href = '../../admin/team-members.html';
+        } else {
+          showNotification('Bạn không có quyền thực hiện chức năng này!');
+        }
+      }
     });
   }
+  
+  // Khởi tạo bộ lọc nhóm
+  initTeamFilters();
+}
+
+// Hàm khởi tạo bộ lọc nhóm
+function initTeamFilters() {
+  const teamFilterBtns = document.querySelectorAll('.team-filter-btn');
+  if (teamFilterBtns.length === 0) return;
+  
+  teamFilterBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      // Xóa trạng thái active
+      teamFilterBtns.forEach(b => b.classList.remove('active'));
+      // Thêm active cho nút được nhấn
+      this.classList.add('active');
+      
+      // Lọc thành viên theo team
+      const team = this.dataset.team;
+      filterTeamMembers(team);
+    });
+  });
+}
+
+// Hàm lọc thành viên theo nhóm
+function filterTeamMembers(team) {
+  const members = document.querySelectorAll('.team-member');
+  members.forEach(member => {
+    if (team === 'all' || member.dataset.team === team) {
+      member.style.display = '';
+    } else {
+      member.style.display = 'none';
+    }
+  });
 }
 
 // Hiển thị chi tiết task

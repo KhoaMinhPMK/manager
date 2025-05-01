@@ -196,13 +196,22 @@
             <h3><i class="fas fa-users"></i> Nhân sự dự án</h3>
             <button class="btn-add"><i class="fas fa-plus"></i> Thêm thành viên</button>
           </div>
+          
+          <!-- Team filters -->
+          <div class="team-filters">
+            <button class="team-filter-btn active" data-team="all">Tất cả</button>
+            <button class="team-filter-btn" data-team="design">Team Design</button>
+            <button class="team-filter-btn" data-team="code">Team Code</button>
+            <button class="team-filter-btn" data-team="market">Team Nghiên cứu</button>
+          </div>
+          
           <div class="team-list">
             <!-- Team Design -->
-            <div class="team-member">
+            <div class="team-member" data-team="design">
               <div class="member-avatar" style="background-color: #FE4365;"><i class="fas fa-paint-brush"></i></div>
               <div class="member-info">
                 <h4>Nguyễn Khả Ái</h4>
-                <span>Designer (Team Lead)</span>
+                <span>Designer <span class="team-badge design">Team Lead</span></span>
               </div>
               <div class="member-workload">
                 <span>5</span>
@@ -210,7 +219,19 @@
               </div>
             </div>
             
-            <div class="team-member">
+            <div class="team-member" data-team="design">
+              <div class="member-avatar" style="background-color: #FC9D9A;"><i class="fas fa-paint-brush"></i></div>
+              <div class="member-info">
+                <h4>Nguyễn Ngọc Mai Anh</h4>
+                <span>Designer</span>
+              </div>
+              <div class="member-workload">
+                <span>3</span>
+                <small>Tasks</small>
+              </div>
+            </div>
+            
+            <div class="team-member" data-team="design">
               <div class="member-avatar" style="background-color: #FC9D9A;"><i class="fas fa-paint-brush"></i></div>
               <div class="member-info">
                 <h4>Nguyễn Hải Yến</h4>
@@ -223,7 +244,7 @@
             </div>
             
             <!-- Team Code -->
-            <div class="team-member">
+            <div class="team-member" data-team="code">
               <div class="member-avatar" style="background-color: #4285F4;"><i class="fas fa-code"></i></div>
               <div class="member-info">
                 <h4>Lê Minh Hoàng</h4>
@@ -235,7 +256,7 @@
               </div>
             </div>
             
-            <div class="team-member">
+            <div class="team-member" data-team="code">
               <div class="member-avatar" style="background-color: #3498DB;"><i class="fas fa-code"></i></div>
               <div class="member-info">
                 <h4>Phạm Quốc Huy</h4>
@@ -246,8 +267,33 @@
                 <small>Tasks</small>
               </div>
             </div>
+            
+            <!-- Team Nghiên cứu thị trường -->
+            <div class="team-member" data-team="market">
+              <div class="member-avatar" style="background-color: #27AE60;"><i class="fas fa-chart-line"></i></div>
+              <div class="member-info">
+                <h4>Nguyễn Hồng Thiên Ân</h4>
+                <span>Market Researcher <span class="team-badge market">Team Lead</span></span>
+              </div>
+              <div class="member-workload">
+                <span>3</span>
+                <small>Tasks</small>
+              </div>
+            </div>
+            
+            <div class="team-member" data-team="market">
+              <div class="member-avatar" style="background-color: #2ECC71;"><i class="fas fa-chart-line"></i></div>
+              <div class="member-info">
+                <h4>Trương Trung Kiên</h4>
+                <span>Market Researcher</span>
+              </div>
+              <div class="member-workload">
+                <span>2</span>
+                <small>Tasks</small>
+              </div>
+            </div>
           </div>
-          <a href="#team" class="view-all">Xem tất cả nhân sự <i class="fas fa-arrow-right"></i></a>
+          <a href="team.html" class="view-all">Xem tất cả nhân sự <i class="fas fa-arrow-right"></i></a>
         </div>
         
         <!-- Lịch trình tuần -->

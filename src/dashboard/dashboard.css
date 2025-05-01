@@ -489,6 +489,56 @@ body {
   color: var(--text-light);
 }
 
+/* Team filters */
+.team-filters {
+  display: flex;
+  gap: 8px;
+  margin: 15px 0;
+  flex-wrap: wrap;
+}
+
+.team-filter-btn {
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+  background-color: white;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.team-filter-btn:hover {
+  background-color: #f5f7ff;
+}
+
+.team-filter-btn.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* Team badge styles */
+.team-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: white;
+  margin-left: 5px;
+}
+
+.team-badge.design {
+  background-color: #FE4365;
+}
+
+.team-badge.code {
+  background-color: #4285F4;
+}
+
+.team-badge.market {
+  background-color: #27AE60;
+}
+
 /* Schedule */
 .schedule-content {
   margin: 15px 0;
