@@ -34,7 +34,7 @@ if (!empty($data->username) && !empty($data->password)) {
     $password = mysqli_real_escape_string($conn, $data->password);
     
     // Query để kiểm tra người dùng
-    $sql = "SELECT id, username, password, full_name, role FROM users WHERE username = ?";
+    $sql = "SELECT id, username, password, full_name, role, avatar FROM users WHERE username = ?";
     
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);
@@ -70,6 +70,9 @@ if (!empty($data->username) && !empty($data->password)) {
                 $update_stmt->close();
             }
             
+            // Xác định avatar - sử dụng avatar_guide.png làm mặc định
+            $avatar = $user["avatar"] ?? "/assets/images/avatar_guide.png";
+            
             // Đăng nhập thành công
             http_response_code(200);
             echo json_encode(array(
@@ -79,7 +82,8 @@ if (!empty($data->username) && !empty($data->password)) {
                     "id" => $user["id"],
                     "username" => $user["username"],
                     "full_name" => $user["full_name"],
-                    "role" => $user["role"]
+                    "role" => $user["role"],
+                    "avatar" => $avatar
                 ),
                 "debug" => $debug_info
             ));
