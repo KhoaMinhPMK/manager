@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAIEDU Admin - Quản trị hệ thống</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>WAIEDU</span>
+                </div>
+                <button class="sidebar-toggle" id="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <div class="sidebar-user">
+                <div class="user-avatar">
+                    <img src="https://manager.waiedu.site/assets/avt.png" alt="Admin Avatar" id="admin-avatar">
+                </div>
+                <div class="user-info">
+                    <h4 id="admin-name">Admin</h4>
+                    <p id="admin-role">Quản trị viên</p>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="admin.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Tổng quan</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="user/index.html">
+                            <i class="fas fa-users"></i>
+                            <span>Người dùng</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="projects.html">
+                            <i class="fas fa-project-diagram"></i>
+                            <span>Dự án</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="roles.html">
+                            <i class="fas fa-user-shield"></i>
+                            <span>Phân quyền</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="request/index.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Yêu cầu</span>
+                            <span class="badge" id="request-count">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Báo cáo</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Cài đặt</span>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#" id="logout-btn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Đăng xuất</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="toggle-sidebar">
+                    <button id="toggle-sidebar-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Tìm kiếm...">
+                </div>
+                
+                <div class="top-bar-right">
+                    <div class="theme-toggle">
+                        <button id="theme-toggle-btn">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                    <div class="notification-dropdown">
+                        <button id="notification-btn">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge" id="notification-count">0</span>
+                        </button>
+                        <div class="dropdown-content" id="notification-dropdown">
+                            <div class="dropdown-header">
+                                <h5>Thông báo</h5>
+                                <a href="#" class="mark-all">Đánh dấu đã đọc</a>
+                            </div>
+                            <div class="dropdown-body">
+                                <div class="notification-item unread">
+                                    <div class="notification-icon"><i class="fas fa-user-plus"></i></div>
+                                    <div class="notification-content">
+                                        <p>Có yêu cầu đăng ký mới cần phê duyệt</p>
+                                        <span class="time">5 phút trước</span>
+                                    </div>
+                                </div>
+                                <div class="notification-item unread">
+                                    <div class="notification-icon"><i class="fas fa-key"></i></div>
+                                    <div class="notification-content">
+                                        <p>Có yêu cầu đặt lại mật khẩu mới</p>
+                                        <span class="time">30 phút trước</span>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                                    <div class="notification-content">
+                                        <p>Cảnh báo bảo mật: 3 lần đăng nhập thất bại</p>
+                                        <span class="time">2 giờ trước</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-footer">
+                                <a href="notifications.html">Xem tất cả thông báo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-dropdown">
+                        <button id="profile-btn" class="profile-btn">
+                            <img src="https://manager.waiedu.site/assets/avt.png" alt="Profile" id="header-avatar">
+                        </button>
+                        <div class="dropdown-content" id="profile-dropdown">
+                            <a href="profile.html"><i class="fas fa-user"></i> Hồ sơ của tôi</a>
+                            <a href="settings.html"><i class="fas fa-cog"></i> Cài đặt</a>
+                            <div class="divider"></div>
+                            <a href="#" id="header-logout-btn"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="content-container">
+                <div class="content-header">
+                    <h1>Tổng quan hệ thống</h1>
+                    <div class="breadcrumb">
+                        <a href="admin.html">Trang chủ</a> / <span>Tổng quan</span>
+                    </div>
+                </div>
+                
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: rgba(37, 99, 235, 0.1);">
+                            <i class="fas fa-users" style="color: #2563eb;"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h2 id="user-count">0</h2>
+                            <p>Người dùng</p>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="stat-change positive">+5% </span>
+                            <span class="stat-period">so với tháng trước</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: rgba(16, 185, 129, 0.1);">
+                            <i class="fas fa-project-diagram" style="color: #10b981;"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h2 id="project-count">0</h2>
+                            <p>Dự án</p>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="stat-change positive">+12% </span>
+                            <span class="stat-period">so với tháng trước</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: rgba(245, 158, 11, 0.1);">
+                            <i class="fas fa-clipboard-list" style="color: #f59e0b;"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h2 id="task-count">0</h2>
+                            <p>Công việc</p>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="stat-change positive">+20% </span>
+                            <span class="stat-period">so với tháng trước</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: rgba(239, 68, 68, 0.1);">
+                            <i class="fas fa-clipboard-check" style="color: #ef4444;"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h2 id="pending-count">0</h2>
+                            <p>Yêu cầu chờ duyệt</p>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="stat-change">Cần xử lý</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-row dashboard-row-first">
+                    <div class="dashboard-chart-card">
+                        <div class="card-header">
+                            <h3>Hoạt động hệ thống</h3>
+                            <div class="card-actions">
+                                <select id="chart-period">
+                                    <option value="7">7 ngày</option>
+                                    <option value="30" selected>30 ngày</option>
+                                    <option value="90">90 ngày</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="activity-chart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-requests-card">
+                        <div class="card-header">
+                            <h3>Yêu cầu mới nhất</h3>
+                            <a href="request/index.html" class="view-all">Xem tất cả</a>
+                        </div>
+                        <div class="card-body">
+                            <table class="requests-table">
+                                <thead>
+                                    <tr>
+                                        <th>Loại</th>
+                                        <th>Người dùng</th>
+                                        <th>Thời gian</th>
+                                        <th>Trạng thái</th>
+                                        <th>Hành động</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recent-requests">
+                                    <!-- This section will be filled by JavaScript -->
+                                    <!-- If no requests, show empty state -->
+                                    <tr class="empty-state" id="no-requests" style="display:none;">
+                                        <td colspan="5">
+                                            <div class="empty-requests">
+                                                <i class="fas fa-clipboard-list"></i>
+                                                <p>Không có yêu cầu nào.</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- Default loading indicator -->
+                                    <tr id="loading-requests">
+                                        <td colspan="5">
+                                            <div class="loading-spinner">
+                                                <i class="fas fa-circle-notch fa-spin"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-row dashboard-row-second">
+                    <div class="dashboard-users-card">
+                        <div class="card-header">
+                            <h3>Người dùng mới nhất</h3>
+                            <a href="users.html" class="view-all">Xem tất cả</a>
+                        </div>
+                        <div class="card-body">
+                            <table class="users-table">
+                                <thead>
+                                    <tr>
+                                        <th>Người dùng</th>
+                                        <th>Vai trò</th>
+                                        <th>Email</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Trạng thái</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recent-users">
+                                    <tr>
+                                        <td class="user-cell">
+                                            <div class="user-avatar-sm">
+                                                <img src="https://manager.waiedu.site/assets/avt.png" alt="User 1">
+                                            </div>
+                                            <span>Nguyễn Văn A</span>
+                                        </td>
+                                        <td>Nhân viên</td>
+                                        <td>nguyen.van.a@waiedu.com</td>
+                                        <td>01/05/2023</td>
+                                        <td><span class="status-active">Hoạt động</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="user-cell">
+                                            <div class="user-avatar-sm">
+                                                <img src="https://manager.waiedu.site/assets/avt.png" alt="User 2">
+                                            </div>
+                                            <span>Trần Thị B</span>
+                                        </td>
+                                        <td>Quản lý</td>
+                                        <td>tran.thi.b@waiedu.com</td>
+                                        <td>28/04/2023</td>
+                                        <td><span class="status-active">Hoạt động</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="user-cell">
+                                            <div class="user-avatar-sm">
+                                                <img src="https://manager.waiedu.site/assets/avt.png" alt="User 3">
+                                            </div>
+                                            <span>Phạm Văn C</span>
+                                        </td>
+                                        <td>Nhân viên</td>
+                                        <td>pham.van.c@waiedu.com</td>
+                                        <td>25/04/2023</td>
+                                        <td><span class="status-inactive">Không hoạt động</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-projects-card">
+                        <div class="card-header">
+                            <h3>Phân bổ người dùng</h3>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="role-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="admin.js"></script>
+</body>
+</html>

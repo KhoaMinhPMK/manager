@@ -1,0 +1,131 @@
+<?php
+// Set headers for API response
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET');
+header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
+
+// Database connection parameters
+$host = 'localhost'; 
+$db_name = 'u531045590_manager';
+$username = 'u531045590_manager';
+$password = 'Strongpass123@#';
+$charset = 'utf8mb4';
+
+// Initialize response array
+$response = array();
+$response['success'] = false;
+
+try {
+    // Create database connection
+    $dsn = "mysql:host=$host;dbname=$db_name;charset=$charset";
+    $options = [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES   => false,
+    ];
+    $pdo = new PDO($dsn, $username, $password, $options);
+    
+    // Verify authentication
+    $auth_header = isset($_SERVER['HTTP_AUTHORIZATION']) ? $_SERVER['HTTP_AUTHORIZATION'] : '';
+    if (!$auth_header || strpos($auth_header, 'Bearer ') !== 0) {
+        $response['message'] = 'Không tìm thấy token xác thực';
+        echo json_encode($response);
+        exit();
+    }
+    
+    $token = substr($auth_header, 7); // Remove "Bearer " prefix
+    
+    // Verify token in database
+    $token_stmt = $pdo->prepare("
+        SELECT ut.*, u.role_id 
+        FROM user_tokens ut
+        JOIN users u ON ut.user_id = u.id
+        WHERE ut.token = :token AND ut.expires_at > NOW()
+    ");
+    $token_stmt->bindParam(':token', $token);
+    $token_stmt->execute();
+    
+    if ($token_stmt->rowCount() === 0) {
+        $response['message'] = 'Token không hợp lệ hoặc đã hết hạn';
+        echo json_encode($response);
+        exit();
+    }
+    
+    $token_data = $token_stmt->fetch();
+    
+    // Check if user is admin (role_id = 1)
+    if ($token_data['role_id'] !== 1) {
+        $response['message'] = 'Không đủ quyền truy cập';
+        echo json_encode($response);
+        exit();
+    }
+    
+    // Initialize requests array
+    $requests = array();
+    
+    // Get registration requests
+    $registration_stmt = $pdo->query("
+        SELECT 
+            id, 
+            full_name, 
+            email, 
+            'register' as type, 
+            status, 
+            created_at 
+        FROM 
+            registration_requests 
+        ORDER BY 
+            created_at DESC
+    ");
+    
+    while ($row = $registration_stmt->fetch()) {
+        $requests[] = $row;
+    }
+    
+    // Get password reset requests
+    $password_reset_stmt = $pdo->query("
+        SELECT 
+            id, 
+            full_name, 
+            email, 
+            'password' as type, 
+            status, 
+            created_at 
+        FROM 
+            password_reset_requests 
+        ORDER BY 
+            created_at DESC
+    ");
+    
+    while ($row = $password_reset_stmt->fetch()) {
+        $requests[] = $row;
+    }
+    
+    // Sort by created_at (descending)
+    usort($requests, function($a, $b) {
+        return strtotime($b['created_at']) - strtotime($a['created_at']);
+    });
+    
+    // Count pending requests
+    $pending_reg_stmt = $pdo->query("SELECT COUNT(*) as count FROM registration_requests WHERE status = 'pending'");
+    $pending_pwd_stmt = $pdo->query("SELECT COUNT(*) as count FROM password_reset_requests WHERE status = 'pending'");
+    
+    $reg_count = $pending_reg_stmt->fetch()['count'];
+    $pwd_count = $pending_pwd_stmt->fetch()['count'];
+    $pending_count = $reg_count + $pwd_count;
+    
+    // Return success response
+    $response['success'] = true;
+    $response['message'] = 'Lấy danh sách yêu cầu thành công';
+    $response['requests'] = $requests;
+    $response['pending_count'] = $pending_count;
+    $response['total_count'] = count($requests);
+    
+} catch (PDOException $e) {
+    $response['message'] = 'Lỗi kết nối cơ sở dữ liệu: ' . $e->getMessage();
+}
+
+// Return JSON response
+echo json_encode($response);
+?>

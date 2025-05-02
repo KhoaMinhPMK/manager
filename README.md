@@ -110,6 +110,17 @@ Hệ thống quản lý dự án và nhân sự cho WAIEDU, giúp theo dõi các
         └── help.js           # JS xử lý trợ giúp
 ```
 
+## Tài khoản đăng nhập hệ thống
+
+### Tài khoản quản trị viên
+- **Admin1**: admin1@example.com / password123
+- **Admin2**: admin2@example.com / password456
+
+### Tài khoản người dùng
+- **User1**: user1@example.com / userpass1
+- **User2**: user2@example.com / userpass2
+- **User3**: user3@example.com / userpass3
+
 ## TODO List - Các trang cần phát triển
 
 ### Các trang cần làm và hoàn thiện
